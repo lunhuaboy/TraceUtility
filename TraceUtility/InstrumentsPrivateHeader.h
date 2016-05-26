@@ -104,3 +104,7 @@ extern "C" {
 - (BOOL)loadDocument:(NSURL *)documentURL error:(NSError **)errpt;
 - (void)close;
 @end
+
+@interface DVTDeveloperPaths : NSObject
++ (void)initializeApplicationDirectoryName:(id)arg1;
+@end

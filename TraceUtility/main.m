@@ -12,13 +12,15 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        id test = @"../../../../../../../Applications/Xcode.app/";
+        [DVTDeveloperPaths initializeApplicationDirectoryName:test];
         // Required. Each instrument is a plugin and we have to load them before we can process their data.
         PFTLoadPlugins();
 
         // Open a trace document.
         XRTrace *trace = [[XRTrace alloc]initForCommandLine:NO];
         NSError *error;
-        NSString *tracePath = @"/Users/qusic/Downloads/Instruments.trace";
+        NSString *tracePath =@"/tmp/appium-instruments/instrumentscli0.trace";;
         [trace loadDocument:[NSURL fileURLWithPath:tracePath] error:&error];
         if (error) {
             NSLog(@"Error: %@", error);
