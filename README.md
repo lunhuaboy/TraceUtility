@@ -12,3 +12,25 @@ Instrument templates used by the app are plugins in `/Applications/Xcode.app/Con
 Such as `SamplerPlugin.xrplugin` for Time Profiler.
 
 The code is short and commented out and I don't need to explain much here.
+
+Xcode 7.3:
+
+For PFTLoadPlugins() called applicationDirectoryName, before applicationDirectoryName，we need to invoke initializeApplicationDirectoryName, but PFTLoadPlugins didn't help do that.
+
+We need to link one more framework in '/Applications/Xcode.app/Contents/SharedFrameworks'
+
+    * 'DVTFoundation.framework'
+
+Add code in .h file as below:
+    
+    @interface DVTDeveloperPaths : NSObject
+　　　　+ (void)initializeApplicationDirectoryName:(id)arg1;
+    @end
+
+In main.m，add the code below before PFTLoadPlugins()：
+
+　　　　id test = @"../../../../../../../Applications/Xcode.app/";
+　　　　[DVTDeveloperPaths initializeApplicationDirectoryName:test];
+PS:The string "test" is absolute path, you don't need to change it. 
+
+
