@@ -22,17 +22,17 @@ We need to link one more framework in '/Applications/Xcode.app/Contents/SharedFr
     * 'DVTFoundation.framework'
 
 Add code in .h file as below:
-    ```objc
+```objc
     @interface DVTDeveloperPaths : NSObject
 　　　　+ (void)initializeApplicationDirectoryName:(id)arg1;
     @end
-    ```
+```
 
 In main.m，add the code below before PFTLoadPlugins()：
 ```objc
 　　　id test = @"../../../../../../../Applications/Xcode.app/";
 　　　[DVTDeveloperPaths initializeApplicationDirectoryName:test];
-    ```
+```
 PS:The string "test" is absolute path, you don't need to change it. 
 
 
